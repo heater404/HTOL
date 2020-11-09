@@ -1,5 +1,7 @@
 ﻿using HTOL.Command;
+using HTOL.Common;
 using HTOL.Model;
+using System;
 using static HTOL.Enums;
 
 namespace HTOL.ViewModel
@@ -11,6 +13,7 @@ namespace HTOL.ViewModel
         public SitesViewModel SitesVM { get; set; }
 
         public RelayCommand ConnectCmd { get; set; }
+        public RelayCommand DisconnectCmd { get; set; }
 
         public MainViewModel()
         {
@@ -23,12 +26,31 @@ namespace HTOL.ViewModel
         private void InitCmds()
         {
             ConnectCmd = new RelayCommand(Connect);
+            DisconnectCmd = new RelayCommand(Disconnect);
         }
 
         private void Connect()
         {
-            SitesVM.Sites[0].Status = SiteStatus.Run;
-            SitesVM.Sites[0].Register[0].Val = 0x999;
+            SitesVM.SetAllSiteStatus(SiteStatus.Run);
+
+            IT6332A t6332A = new IT6332A();
+            t6332A.Open();
+
+            Console.WriteLine(t6332A.QueryVoltage(InstrumentChannel.CH2));
+            Console.WriteLine(t6332A.QueryVoltage(InstrumentChannel.CH1));
+            Console.WriteLine(t6332A.QueryVoltage(InstrumentChannel.CH3));
+            Console.WriteLine(t6332A.QueryVoltage()[0].ToString()+ t6332A.QueryVoltage()[1].ToString() + t6332A.QueryVoltage()[2]);
+
+            Console.WriteLine(t6332A.QueryCurrent(InstrumentChannel.CH3));
+            Console.WriteLine(t6332A.QueryCurrent(InstrumentChannel.CH2));
+            Console.WriteLine(t6332A.QueryCurrent(InstrumentChannel.CH1));
+            Console.WriteLine(t6332A.QueryCurrent());
+        }
+
+
+        private void Disconnect()
+        {
+            SitesVM.SetAllSiteStatus(SiteStatus.Stop);
         }
     }
 }

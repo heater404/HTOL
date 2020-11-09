@@ -146,7 +146,7 @@
                     <RadioButton
                         Width="auto"
                         Padding="5"
-                        Command="{Binding ConnectCmd}"
+                        Command="{Binding DisconnectCmd}"
                         Content="Disconnect"
                         IsChecked="True"
                         Style="{DynamicResource RadioButtonStyle}" />

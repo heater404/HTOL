@@ -26,11 +26,11 @@ namespace HTOL.ViewModel
                             (
                                new SiteModel
                                {
-                                  TcaAddr = tcaAddr,
-                                  Channel = tcaChannel,
-                                  ChipAddr = chipAddr,
-                                  Status = SiteStatus.Stop,
-                                  Register = new List<RegisterModel>
+                                   TcaAddr = tcaAddr,
+                                   Channel = tcaChannel,
+                                   ChipAddr = chipAddr,
+                                   Status = SiteStatus.Stop,
+                                   Register = new List<RegisterModel>
                                     {
                                         new RegisterModel { Addr = 0x0431, Val = 0xFF } ,
                                         new RegisterModel{ Addr=0x043d,Val=0x00}
@@ -45,6 +45,24 @@ namespace HTOL.ViewModel
 
             Communication.Instacne.RecvRegsHanlder += RecvRegsHanlder;
         }
+
+        public void SetSiteStatus(TcaAddr tca, ChipAddr chip, TcaChannel channel, SiteStatus status)
+        {
+            SiteModel model = Sites.Find(s => s.TcaAddr == tca && s.ChipAddr == chip && s.Channel == channel);
+            if (model != null)
+            {
+                model.Status = status;
+            }
+        }
+
+        public void SetAllSiteStatus(SiteStatus status)
+        {
+            foreach (var site in Sites)
+            {
+                site.Status = status;
+            }
+        }
+
 
         private void RecvRegsHanlder(object sender, Tuple<TcaAddr, TcaChannel, ChipAddr, Dictionary<ushort, uint>> e)
         {

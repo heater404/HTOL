@@ -56,5 +56,12 @@ namespace HTOL
             _0x10 = 0x10,
             _0x20 = 0x20,
         }
+
+        public enum InstrumentChannel
+        {
+            CH1,
+            CH2,
+            CH3,
+        }
     }
 }
