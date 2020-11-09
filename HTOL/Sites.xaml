@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="HTOL.Sites"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conver="clr-namespace:HTOL.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HTOL"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <conver:BackgroundConverter x:Key="bgConverter" />
+    </UserControl.Resources>
+    <Border Grid.Row="1" Grid.Column="0">
+        <ItemsControl ItemsSource="{Binding SitesVM.Sites}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="6" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="2"
+                        Background="{Binding Status, Converter={StaticResource bgConverter}}"
+                        CornerRadius="5">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <TextBlock Text="{Binding TcaAddr, StringFormat=TCA Addr : {0}}" />
+                            <TextBlock Text="{Binding Channel}" />
+                            <TextBlock Text="{Binding ChipAddr, StringFormat=Chip Addr : {0}}" />
+                        </StackPanel>
+                        <Border.ToolTip>
+                            <ItemsControl ItemsSource="{Binding Register}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Addr, StringFormat=0x{0:X4}:}" />
+                                            <TextBlock Text="{Binding Val, StringFormat=0x{0:X8}}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border.ToolTip>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Border>
+</UserControl>

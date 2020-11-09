@@ -1,0 +1,196 @@
+﻿<Window
+    x:Class="HTOL.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HTOL"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="HTOL"
+    Width="1200"
+    Height="800"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle
+                            Margin="2"
+                            SnapsToDevicePixels="true"
+                            Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                            StrokeDashArray="1 2"
+                            StrokeThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFFFFFFF" />
+        <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FF707070" />
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle
+                            Margin="14,0,0,0"
+                            SnapsToDevicePixels="true"
+                            Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                            StrokeDashArray="1 2"
+                            StrokeThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="RadioButton.MouseOver.Background" Color="#FFF3F9FF" />
+        <SolidColorBrush x:Key="RadioButton.MouseOver.Border" Color="#FF5593FF" />
+        <SolidColorBrush x:Key="RadioButton.MouseOver.Glyph" Color="#FF212121" />
+        <SolidColorBrush x:Key="RadioButton.Disabled.Background" Color="#FFE6E6E6" />
+        <SolidColorBrush x:Key="RadioButton.Disabled.Border" Color="#FFBCBCBC" />
+        <SolidColorBrush x:Key="RadioButton.Disabled.Glyph" Color="#FF707070" />
+        <SolidColorBrush x:Key="RadioButton.Pressed.Background" Color="#FFD9ECFF" />
+        <SolidColorBrush x:Key="RadioButton.Pressed.Border" Color="#FF3C77DD" />
+        <SolidColorBrush x:Key="RadioButton.Pressed.Glyph" Color="#FF212121" />
+        <SolidColorBrush x:Key="RadioButton.Static.Glyph" Color="#FF212121" />
+        <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid
+                            x:Name="templateRoot"
+                            Background="Transparent"
+                            SnapsToDevicePixels="True">
+                            <Border
+                                x:Name="radioButtonBorder"
+                                Margin="1,1,2,1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                                <ContentPresenter
+                                    x:Name="contentPresenter"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Focusable="False"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasContent" Value="true">
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}" />
+                                <Setter Property="Padding" Value="4,-1,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="radioButtonBorder" Property="Background" Value="{StaticResource RadioButton.MouseOver.Background}" />
+                                <Setter TargetName="radioButtonBorder" Property="BorderBrush" Value="{StaticResource RadioButton.MouseOver.Border}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="radioButtonBorder" Property="Background" Value="{StaticResource RadioButton.Disabled.Background}" />
+                                <Setter TargetName="radioButtonBorder" Property="BorderBrush" Value="{StaticResource RadioButton.Disabled.Border}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="radioButtonBorder" Property="Background" Value="{StaticResource RadioButton.Pressed.Background}" />
+                                <Setter TargetName="radioButtonBorder" Property="BorderBrush" Value="{StaticResource RadioButton.Pressed.Border}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="radioButtonBorder" Property="Background" Value="green" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="radioButtonBorder" Property="Background" Value="darkGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Offset="1" Color="#FF41608D" />
+            <GradientStop Color="#FFDEE1E2" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,5,0,5">
+            <DockPanel LastChildFill="False">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton
+                        Width="auto"
+                        Padding="5"
+                        Command="{Binding ConnectCmd}"
+                        Content="Connect"
+                        Style="{DynamicResource RadioButtonStyle}" />
+                    <RadioButton
+                        Width="auto"
+                        Padding="5"
+                        Command="{Binding ConnectCmd}"
+                        Content="Disconnect"
+                        IsChecked="True"
+                        Style="{DynamicResource RadioButtonStyle}" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Border
+                        Width="30"
+                        Height="30"
+                        Background="DarkGray"
+                        CornerRadius="5">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Stop" />
+                    </Border>
+                    <Border
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        Background="Green"
+                        CornerRadius="5">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Run" />
+                    </Border>
+                    <Border
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        Background="Red"
+                        CornerRadius="5">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Error" />
+                    </Border>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <local:Sites Grid.Row="1" Grid.Column="0" />
+
+        <local:Graph Grid.Row="2" Grid.Column="0" />
+    </Grid>
+</Window>
