@@ -10,6 +10,9 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
         <conver:BackgroundConverter x:Key="bgConverter" />
     </UserControl.Resources>
     <Border Grid.Row="1" Grid.Column="0">
@@ -29,9 +32,9 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Orientation="Vertical">
-                            <TextBlock Text="{Binding TcaAddr, StringFormat=TCA Addr : {0}}" />
-                            <TextBlock Text="{Binding Channel}" />
-                            <TextBlock Text="{Binding ChipAddr, StringFormat=Chip Addr : {0}}" />
+                            <TextBlock Foreground="White" Text="{Binding TcaAddr, StringFormat=TCA Addr : {0}}" />
+                            <TextBlock Foreground="White" Text="{Binding Channel}" />
+                            <TextBlock Foreground="White" Text="{Binding ChipAddr, StringFormat=Chip Addr : {0}}" />
                         </StackPanel>
                         <Border.ToolTip>
                             <ItemsControl ItemsSource="{Binding Register}">

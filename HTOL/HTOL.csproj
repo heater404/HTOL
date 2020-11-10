@@ -89,10 +89,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Common\CsvHelper.cs" />
     <Compile Include="Common\CyUSBClient.cs" />
     <Compile Include="Common\IClient.cs" />
     <Compile Include="Common\Communication.cs" />
+    <Compile Include="Common\Instrument.cs" />
     <Compile Include="Common\IT6332A.cs" />
+    <Compile Include="Common\IT6942A.cs" />
     <Compile Include="Common\NLogHelper.cs" />
     <Compile Include="Converters\BackgroundConverter.cs" />
     <Compile Include="Model\GraphModel.cs" />

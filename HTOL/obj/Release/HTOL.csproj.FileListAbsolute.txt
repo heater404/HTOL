@@ -34,3 +34,5 @@ E:\01Projects\HTOL\HTOL\HTOL\obj\Release\HTOL.csproj.CopyComplete
 E:\01Projects\HTOL\HTOL\HTOL\obj\Release\HTOL.exe
 E:\01Projects\HTOL\HTOL\HTOL\obj\Release\HTOL.pdb
 E:\01Projects\HTOL\HTOL\HTOL\bin\Release\CyUSB.dll
+E:\01Projects\HTOL\HTOL\HTOL\bin\Release\Ivi.Visa.dll
+E:\01Projects\HTOL\HTOL\HTOL\bin\Release\NationalInstruments.Visa.dll

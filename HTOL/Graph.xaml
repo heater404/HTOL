@@ -22,14 +22,21 @@
         <Border
             Grid.Column="0"
             Margin="2"
-            Background="DarkGray"
+            Background="#FF1E1E1E"
             CornerRadius="5">
-            <lvc:CartesianChart Hoverable="False" LegendLocation="Top">
+            <lvc:CartesianChart
+                Foreground="White"
+                Hoverable="False"
+                LegendLocation="Top">
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Voltage(V)" Foreground="Green" />
+                    <lvc:Axis
+                        Title="Voltage(V)"
+                        Foreground="Green"
+                        LabelFormatter="{Binding GraphVM.ValueFormatter}" />
                     <lvc:Axis
                         Title="Current(A)"
                         Foreground="Red"
+                        LabelFormatter="{Binding GraphVM.ValueFormatter}"
                         Position="RightTop">
                         <lvc:Axis.Separator>
                             <lvc:Separator Style="{StaticResource CleanSeparator}" />
@@ -38,8 +45,8 @@
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis
-                        Title="Time(mm:ss)"
-                        Foreground="Black"
+                        Title="Time(HH:mm:ss)"
+                        Foreground="White"
                         LabelFormatter="{Binding GraphVM.DateTimeFormatter}"
                         MaxValue="{Binding GraphVM.AxisXMax}"
                         MinValue="{Binding GraphVM.AxisXMin}">
@@ -68,16 +75,22 @@
         <Border
             Grid.Column="1"
             Margin="2"
-            Background="DarkGray"
+            Background="#FF1E1E1E"
             CornerRadius="5">
-            <lvc:CartesianChart Hoverable="False" LegendLocation="Top">
+            <lvc:CartesianChart
+                Foreground="White"
+                Hoverable="False"
+                LegendLocation="Top">
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Temperature(℃)" Foreground="Green" />
+                    <lvc:Axis
+                        Title="Temperature(℃)"
+                        Foreground="Green"
+                        LabelFormatter="{Binding GraphVM.ValueFormatter}" />
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis
-                        Title="Time(mm:ss)"
-                        Foreground="Black"
+                        Title="Time(HH:mm:ss)"
+                        Foreground="White"
                         LabelFormatter="{Binding GraphVM.DateTimeFormatter}"
                         MaxValue="{Binding GraphVM.AxisXMax}"
                         MinValue="{Binding GraphVM.AxisXMin}">

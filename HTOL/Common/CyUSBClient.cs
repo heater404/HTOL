@@ -133,7 +133,7 @@ namespace HTOL.Common
             }
             catch (Exception ex)
             {
-                //NLogHelper.ErrorLog(ex);
+                NLogHelper.ErrorLog(ex,"Beq83USBRecv");
             }
         }
 

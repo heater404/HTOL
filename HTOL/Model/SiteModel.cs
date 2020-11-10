@@ -4,6 +4,13 @@ using static HTOL.Enums;
 
 namespace HTOL.Model
 {
+    public struct RegisterCheck
+    {
+        public byte Start { get; set; }
+        public byte End { get; set; }
+        public UInt32 CheckValue { get; set; }
+    }
+
     public class RegisterModel : BaseModel
     {
         public UInt16 Addr { get; set; }
@@ -19,6 +26,8 @@ namespace HTOL.Model
                 RaisePropertyChanged();
             }
         }
+
+        public List<RegisterCheck> Checks { get; set; }
     }
 
     public class SiteModel : BaseModel

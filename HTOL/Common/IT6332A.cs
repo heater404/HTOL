@@ -10,35 +10,17 @@ using static HTOL.Enums;
 
 namespace HTOL.Common
 {
-    public class IT6332A
+    public class IT6332A : Instrument
     {
-        private const string ResourceName = "USB0::0xFFFF::0x6300::802071092757510163::INSTR";
-        private MessageBasedSession session = null;
-        public bool Open()
+        public IT6332A()
         {
-            bool success = false;
-            ResourceManager resource = new ResourceManager();
-            try
-            {
-                session = (MessageBasedSession)resource.Open(ResourceName);
-            }
-            catch (NativeVisaException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            if (session != null)
-                success = true;
-            return success;
+            this.ResourceName = "USB0::0xFFFF::0x6300::802071092757510163::INSTR";
         }
-
-        public bool Close()
-        {
-            session.Dispose();
-            session = null;
-            return session.IsDisposed;
-        }
-
+        /// <summary>
+        /// 根据通道查询电压值
+        /// </summary>
+        /// <param name="channel">通道，是一个预定义好的枚举类型</param>
+        /// <returns>电压值 单位V</returns>
         public double QueryVoltage(InstrumentChannel channel)
         {
             double voltage = 0;
@@ -56,6 +38,11 @@ namespace HTOL.Common
             return voltage;
         }
 
+        /// <summary>
+        /// 根据通道查询电流值 单位A
+        /// </summary>
+        /// <param name="channel">通道，是一个预定义好的枚举类型</param>
+        /// <returns>电流值 单位A</returns>
         public double QueryCurrent(InstrumentChannel channel)
         {
             double current = 0;
@@ -73,6 +60,10 @@ namespace HTOL.Common
             return current;
         }
 
+        /// <summary>
+        /// 查询所有通道的电压值
+        /// </summary>
+        /// <returns>所有通道的电压值 单位V</returns>
         public double[] QueryVoltage()
         {
             double[] voltages = new double[3];
@@ -92,6 +83,10 @@ namespace HTOL.Common
             return voltages;
         }
 
+        /// <summary>
+        /// 查询所有通道的电流值
+        /// </summary>
+        /// <returns>电流值数组 单位A</returns>
         public double[] QueryCurrent()
         {
             double[] currents = new double[3];
@@ -109,41 +104,6 @@ namespace HTOL.Common
             }
 
             return currents;
-        }
-
-
-        private bool WriteCmd(string cmd)
-        {
-            bool success = false;
-            if (session == null)
-                return success;
-            try
-            {
-                this.session.RawIO.Write(cmd);
-                success = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return success;
-        }
-
-        private string ReadCmd()
-        {
-            string result = string.Empty;
-            if (session == null)
-                return result;
-
-            try
-            {
-                result = this.session.RawIO.ReadString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return result;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace HTOL.Converters
             {
                 case SiteStatus.Stop:
                 default:
-                    return Brushes.DarkGray;
+                    return new SolidColorBrush(new Color() { A = 0xff, R = 0x1E, G = 0x1E, B = 0x1E });
 
                 case SiteStatus.Run:
                     return Brushes.Green;

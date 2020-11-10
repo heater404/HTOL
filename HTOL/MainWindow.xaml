@@ -8,8 +8,12 @@
     Title="HTOL"
     Width="1200"
     Height="800"
+    Background="Black"
     mc:Ignorable="d">
     <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -54,7 +58,7 @@
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
             <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}" />
             <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}" />
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -105,7 +109,7 @@
                                 <Setter TargetName="radioButtonBorder" Property="Background" Value="green" />
                             </Trigger>
                             <Trigger Property="IsChecked" Value="False">
-                                <Setter TargetName="radioButtonBorder" Property="Background" Value="darkGray" />
+                                <Setter TargetName="radioButtonBorder" Property="Background" Value="#FF1E1E1E" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -113,17 +117,17 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Window.Background>
+    <!--<Window.Background>
         <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientStop Offset="1" Color="#FF41608D" />
             <GradientStop Color="#FFDEE1E2" />
         </LinearGradientBrush>
-    </Window.Background>
+    </Window.Background>-->
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="200" />
+            <!--<ColumnDefinition Width="200" />-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -156,7 +160,7 @@
                     <Border
                         Width="30"
                         Height="30"
-                        Background="DarkGray"
+                        Background="#FF1E1E1E"
                         CornerRadius="5">
                         <TextBlock
                             HorizontalAlignment="Center"

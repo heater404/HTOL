@@ -193,18 +193,6 @@ namespace HTOL.Common
             return 0;
         }
 
-        //获取固件类型（Bootloader固件时是2.0模式）
-        //public int GetUSBType()
-        //{
-        //    if (null == client)
-        //        return 0;
-        //    Msg msg = new Msg(0)
-        //    {
-        //    };
-
-        //    return client.SendOneMsg(msg, SERVER_MSG_OPT_USB_INFO_REQUEST);
-        //}
-
         public int SetTofArg(int setType, int setValue)
         {
             if (null == client)

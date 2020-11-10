@@ -2,7 +2,8 @@
 using HTOL.Common;
 using HTOL.Model;
 using System;
-using static HTOL.Enums;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace HTOL.ViewModel
 {
@@ -15,6 +16,7 @@ namespace HTOL.ViewModel
         public RelayCommand ConnectCmd { get; set; }
         public RelayCommand DisconnectCmd { get; set; }
 
+        Communication comm = Communication.Instacne;
         public MainViewModel()
         {
             SitesVM = new SitesViewModel();
@@ -31,26 +33,25 @@ namespace HTOL.ViewModel
 
         private void Connect()
         {
-            SitesVM.SetAllSiteStatus(SiteStatus.Run);
+            //if (!comm.CreatClient())
+            //{
+            //    MessageBox.Show("Init USB Fail");
+            //    return;
+            //}
 
-            IT6332A t6332A = new IT6332A();
-            t6332A.Open();
-
-            Console.WriteLine(t6332A.QueryVoltage(InstrumentChannel.CH2));
-            Console.WriteLine(t6332A.QueryVoltage(InstrumentChannel.CH1));
-            Console.WriteLine(t6332A.QueryVoltage(InstrumentChannel.CH3));
-            Console.WriteLine(t6332A.QueryVoltage()[0].ToString()+ t6332A.QueryVoltage()[1].ToString() + t6332A.QueryVoltage()[2]);
-
-            Console.WriteLine(t6332A.QueryCurrent(InstrumentChannel.CH3));
-            Console.WriteLine(t6332A.QueryCurrent(InstrumentChannel.CH2));
-            Console.WriteLine(t6332A.QueryCurrent(InstrumentChannel.CH1));
-            Console.WriteLine(t6332A.QueryCurrent());
+            DateTime time = DateTime.Now;
+            //Task.Run(() => SitesVM.MonitorRegister(10 * 1000));
+            Task.Run(() => GraphVM.MonitorInstrument(30 * 1000, time));
+            //Task.Run(() => GraphVM.MonitorTemp(30 + 1000, time));
         }
-
 
         private void Disconnect()
         {
-            SitesVM.SetAllSiteStatus(SiteStatus.Stop);
+            SitesVM.StopMonitorRegister();
+            GraphVM.StopMonitorInstrument();
+            GraphVM.StopMonitorTemp();
+
+            comm.DestoryClient();
         }
     }
 }
