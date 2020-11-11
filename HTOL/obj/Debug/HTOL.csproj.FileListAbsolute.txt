@@ -33,3 +33,5 @@ E:\01Projects\HTOL\HTOL\HTOL\obj\Debug\HTOL.csproj.CopyComplete
 E:\01Projects\HTOL\HTOL\HTOL\obj\Debug\HTOL.exe
 E:\01Projects\HTOL\HTOL\HTOL\obj\Debug\HTOL.pdb
 E:\01Projects\HTOL\HTOL\HTOL\obj\Debug\HTOL.csprojAssemblyReference.cache
+E:\01Projects\HTOL\HTOL\HTOL\bin\Debug\NLog.config
+E:\01Projects\HTOL\HTOL\HTOL\obj\Debug\HTOL_Content.g.cs

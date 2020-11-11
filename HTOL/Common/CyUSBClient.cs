@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HTOL.Common
 {
@@ -17,7 +18,7 @@ namespace HTOL.Common
         private const int VID = 0x04B4;
         private const int PID = 0x00F0;
         private CyBulkEndPoint bepOut = null;
-        private CyBulkEndPoint bepIn83 = null;
+        private CyBulkEndPoint bepIn82 = null;
         private readonly BlockingCollection<byte[]> recvDatas = new BlockingCollection<byte[]>(3000);
         private readonly List<CMD_PROCESS_MAP> procList = null;
 
@@ -54,6 +55,7 @@ namespace HTOL.Common
             USBEventArgs usbEvent = e as USBEventArgs;
             //Console.WriteLine(usbEvent.FriendlyName.ToString() + " Removed");
             NLogHelper.DebugLog(usbEvent.FriendlyName.ToString() + " Removed");
+            MessageBox.Show(usbEvent.FriendlyName.ToString() + " Removed");
         }
 
         public CyUSBClient(List<CMD_PROCESS_MAP> procList)
@@ -67,7 +69,7 @@ namespace HTOL.Common
                 device.Dispose();
             device = null;
             bepOut = null;
-            bepIn83 = null;
+            bepIn82 = null;
             isConnect = false;
 
             return true;
@@ -86,9 +88,9 @@ namespace HTOL.Common
                     bepOut = ept as CyBulkEndPoint;
                 }
 
-                if (ept.bIn && (ept.Attributes == 2) && ept.Address == 0x83)
+                if (ept.bIn && (ept.Attributes == 2) && ept.Address == 0x82)
                 {
-                    bepIn83 = ept as CyBulkEndPoint;
+                    bepIn82 = ept as CyBulkEndPoint;
                 }
             }
 
@@ -98,7 +100,7 @@ namespace HTOL.Common
             //2: Bulk
             //3: Interrupt
             isConnect = true;
-            Task.Run(() => Bep83USBRecv());
+            Task.Run(() => Bep82USBRecv());
             //Thread t83Recv = new Thread(Bep83USBRecv);
             //t83Recv.Priority = ThreadPriority.Highest;
             //t83Recv.IsBackground = true;
@@ -109,22 +111,22 @@ namespace HTOL.Common
             return true;
         }
 
-        private void Bep83USBRecv()
+        private void Bep82USBRecv()
         {
-            if (null == bepIn83)
+            if (null == bepIn82)
                 return;
 
             int len = 1024 * 48;
             byte[] recv = new byte[len];
-            bepIn83.TimeOut = 300;
-            bepIn83.XferSize = 1024 * 48;
+            bepIn82.TimeOut = 300;
+            bepIn82.XferSize = 1024 * 48;
             try
             {
                 while (isConnect)
                 {
                     len = 1024 * 48;
                     recv = new byte[len];
-                    if (bepIn83.XferData(ref recv, ref len))
+                    if (bepIn82.XferData(ref recv, ref len))
                     {
                         //这里的len是实际读到的数据长度，recv只是一个buffer,所以Buffer中的数据不一定全部是收到的数据。
                         recvDatas.Add(recv.Take(len).ToArray<byte>());
@@ -248,8 +250,8 @@ namespace HTOL.Common
 
             if (bepOut.XferData(ref data, ref len))
             {
-                //Console.WriteLine($"Send One Msg MsgType:0x{BitConverter.ToInt32(data, 44):X2}");
-                NLogHelper.DebugLog($"Send One Msg MsgType:0x{BitConverter.ToInt32(data, 44):X2}");
+                Console.WriteLine($"Send One Msg MsgType:0x{BitConverter.ToInt32(data, 36):X2}");
+                NLogHelper.DebugLog($"Send One Msg MsgType:0x{BitConverter.ToInt32(data, 36):X2}");
             }
 
             return len;

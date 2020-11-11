@@ -33,14 +33,14 @@ namespace HTOL.ViewModel
 
         private void Connect()
         {
-            //if (!comm.CreatClient())
-            //{
-            //    MessageBox.Show("Init USB Fail");
-            //    return;
-            //}
+            if (!comm.CreatClient())
+            {
+                MessageBox.Show("Init USB Fail");
+                return;
+            }
 
             DateTime time = DateTime.Now;
-            //Task.Run(() => SitesVM.MonitorRegister(10 * 1000));
+            Task.Run(() => SitesVM.MonitorRegister(30 * 1000));
             Task.Run(() => GraphVM.MonitorInstrument(30 * 1000, time));
             //Task.Run(() => GraphVM.MonitorTemp(30 + 1000, time));
         }

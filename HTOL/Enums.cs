@@ -33,6 +33,7 @@ namespace HTOL
             Stop,
             Run,
             Error,
+            Lost,
         }
 
         public enum TcaAddr : byte
@@ -54,7 +55,7 @@ namespace HTOL
         public enum ChipAddr : byte
         {
             _0x10 = 0x10,
-            _0x20 = 0x20,
+            _0x1A = 0x1a,
         }
 
         public enum InstrumentChannel

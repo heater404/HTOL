@@ -1,4 +1,5 @@
 ﻿using HTOL.Common;
+using HTOL.Messages;
 using HTOL.Model;
 using System;
 using System.Collections.Generic;
@@ -18,30 +19,368 @@ namespace HTOL.ViewModel
 
             Sites = new List<SiteModel>();
 
-            foreach (TcaAddr tcaAddr in Enum.GetValues(typeof(TcaAddr)))
+            SiteModel model = new SiteModel
             {
-                foreach (ChipAddr chipAddr in Enum.GetValues(typeof(ChipAddr)))
-                {
-                    foreach (TcaChannel tcaChannel in Enum.GetValues(typeof(TcaChannel)))
-                    {
-                        Sites.Add
-                            (
-                               new SiteModel
-                               {
-                                   TcaAddr = tcaAddr,
-                                   Channel = tcaChannel,
-                                   ChipAddr = chipAddr,
-                                   Status = SiteStatus.Stop,
-                                   Register = new List<RegisterModel>
+                ID=0,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_1,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
                                     {
                                         new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
                                     }
-                               }
-                            );
-                    }
-                }
-            }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 1,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_0,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 2,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_5,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 3,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_1,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 4,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_0,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 5,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_5,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 6,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_1,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 7,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_0,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 8,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_5,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 9,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_1,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 10,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_0,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 11,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_5,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 12,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_2,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 13,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_3,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 14,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_4,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 15,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_2,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+             model = new SiteModel
+            {
+                ID = 16,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_3,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+           model = new SiteModel
+            {
+                ID = 17,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_4,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 18,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_2,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 19,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_3,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 20,
+                TcaAddr = TcaAddr._0x70,
+                Channel = TcaChannel.Channel_4,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 21,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_2,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+            model = new SiteModel
+            {
+                ID = 22,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_3,
+                ChipAddr = ChipAddr._0x10,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
+
+             model = new SiteModel
+            {
+                ID = 23,
+                TcaAddr = TcaAddr._0x71,
+                Channel = TcaChannel.Channel_4,
+                ChipAddr = ChipAddr._0x1A,
+                Status = SiteStatus.Stop,
+                Register = new List<RegisterModel>
+                                    {
+                                        new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+                                    }
+            };
+            Sites.Add(model);
             #endregion Init
+
+            #region obsolete
+            //foreach (TcaAddr tcaAddr in Enum.GetValues(typeof(TcaAddr)))
+            //{
+            //    foreach (ChipAddr chipAddr in Enum.GetValues(typeof(ChipAddr)))
+            //    {
+            //        foreach (TcaChannel tcaChannel in Enum.GetValues(typeof(TcaChannel)))
+            //        {
+            //            Sites.Add
+            //                (
+            //                   new SiteModel
+            //                   {
+            //                       TcaAddr = tcaAddr,
+            //                       Channel = tcaChannel,
+            //                       ChipAddr = chipAddr,
+            //                       Status = SiteStatus.Stop,
+            //                       Register = new List<RegisterModel>
+            //                        {
+            //                            new RegisterModel{ Addr=0x040d,Val=0x00,Checks=new List<RegisterCheck>{ new RegisterCheck { Start=0,End=0,CheckValue=1} } }
+            //                        }
+            //                   }
+            //                );
+            //        }
+            //    }
+            //}
+            #endregion
 
             Communication.Instacne.RecvRegsHanlder += RecvRegsHanlder;
         }
@@ -63,26 +402,34 @@ namespace HTOL.ViewModel
             }
         }
 
-        private void RecvRegsHanlder(object sender, Tuple<TcaAddr, TcaChannel, ChipAddr, Dictionary<ushort, uint>> e)
+        private void RecvRegsHanlder(object sender, ToFReply msg)
         {
-            foreach (var item in Sites)
+            foreach (var site in Sites)
             {
-                if (item.TcaAddr == e.Item1 && item.Channel == e.Item2 && item.ChipAddr == e.Item3)
+                if (site.TcaAddr == msg.TcaAddr && site.Channel == msg.TcaChannel && site.ChipAddr == msg.ChipAddr)
                 {
-                    foreach (var reg in item.Register)
+                    if (msg.Num == 0)
                     {
-                        foreach (var regRecv in e.Item4)
+                        site.Status = SiteStatus.Lost;
+                        NLogHelper.DebugLog($"{site.TcaAddr} {site.Channel} {site.ChipAddr} Don't Recv Reg Success");
+                    }    
+                    else
+                    {
+                        foreach (var reg in site.Register)
                         {
-                            if (regRecv.Key == reg.Addr)
+                            foreach (var regRecv in msg.GetRegValue())
                             {
-                                reg.Val = regRecv.Value;//收到值之后需要对值进行校验
-
-                                if(CheckRegister(reg.Val,reg.Checks))
-                                    item.Status = SiteStatus.Run;
-                                else
+                                if (regRecv.Key == reg.Addr)
                                 {
-                                    item.Status = SiteStatus.Error;
-                                    NLogHelper.DebugLog($"{item.TcaAddr} {item.Channel} {item.ChipAddr} Recv Reg {reg.Val}");
+                                    reg.Val = regRecv.Value;//收到值之后需要对值进行校验
+
+                                    if (CheckRegister(reg.Val, reg.Checks))
+                                        site.Status = SiteStatus.Run;
+                                    else
+                                    {
+                                        site.Status = SiteStatus.Error;
+                                        NLogHelper.DebugLog($"{site.TcaAddr} {site.Channel} {site.ChipAddr} Recv Reg {reg.Val}");
+                                    }
                                 }
                             }
                         }

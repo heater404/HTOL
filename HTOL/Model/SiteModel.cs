@@ -32,6 +32,7 @@ namespace HTOL.Model
 
     public class SiteModel : BaseModel
     {
+        public uint ID { get; set; }
         public TcaAddr TcaAddr { get; set; }
         public TcaChannel Channel { get; set; }
         public ChipAddr ChipAddr { get; set; }

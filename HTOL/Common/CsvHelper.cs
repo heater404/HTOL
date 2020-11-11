@@ -11,7 +11,7 @@ namespace HTOL.Common
     public class CsvHelper
     {
         private string path = string.Empty;
-        private const double MaxzSize = 1 / 1024.0;//单位MB
+        private const double MaxzSize = 10;//单位MB
         private uint page = 0;
         /// <summary>
         /// 创建csv文件

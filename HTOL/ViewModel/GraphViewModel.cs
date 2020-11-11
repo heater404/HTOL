@@ -85,6 +85,9 @@ namespace HTOL.ViewModel
         /// <param name="timeout">查询时间间隔，单位ms</param>
         public void MonitorInstrument(int timeout, DateTime time)
         {
+            Voltages.Clear();
+            Currents.Clear();
+
             if (!t6332A.Open())
                 return;
 
@@ -148,6 +151,7 @@ namespace HTOL.ViewModel
         /// <param name="timeout">查询时间间隔 单位毫秒</param>
         public void MonitorTemp(int timeout, DateTime time)
         {
+            Temps.Clear();
             isMonitorTemp = true;
 
             csvHelper = new CsvHelper($@"D:\HTOL\{time:yyyyMMddHHmmss}\M92Data_{DateTime.Now}.csv");

@@ -189,6 +189,17 @@
                             VerticalAlignment="Center"
                             Text="Error" />
                     </Border>
+                    <Border
+                        Width="30"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        Background="DarkRed"
+                        CornerRadius="5">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="Lost" />
+                    </Border>
                 </StackPanel>
             </DockPanel>
         </Border>

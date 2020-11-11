@@ -105,12 +105,12 @@ namespace HTOL.Messages
 
         public TcaChannel TcaChannel
         {
-            get { return (TcaChannel)(this[4] & 0x0000FF00); }
+            get { return (TcaChannel)((this[4] & 0x0000FF00)>>8); }
         }
 
         public ChipAddr ChipAddr
         {
-            get { return (ChipAddr)(this[4] & 0x00FF0000); }
+            get { return (ChipAddr)((this[4] & 0x00FF0000)>>16); }
         }
 
         public TofType Tt

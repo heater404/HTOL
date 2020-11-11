@@ -47,38 +47,38 @@ namespace HTOL.Packets
         // pkt Header
         public Int32 PktSN
         {
-            get { return this[24]; }
-            set { this[24] = value; }
-        }
-
-        public Int32 TotalMsgLen
-        {
-            get { return this[28]; }
-            set { this[28] = value; }
-        }
-
-        public Int32 MsgSn
-        {
             get { return this[32]; }
             set { this[32] = value; }
         }
 
-        public Int32 MsgType
+        public Int32 TotalMsgLen
         {
             get { return this[36]; }
             set { this[36] = value; }
         }
 
-        public Int32 MsgLen
+        public Int32 MsgSn
         {
             get { return this[40]; }
             set { this[40] = value; }
+        }
+
+        public Int32 MsgType
+        {
+            get { return this[44]; }
+            set { this[44] = value; }
+        }
+
+        public Int32 MsgLen
+        {
+            get { return this[48]; }
+            set { this[48] = value; }
         }//msgLen后面实际数据域字段长度
 
         public Int32 Timeout
         {
-            get { return this[44]; }
-            set { this[44] = value; }
+            get { return this[52]; }
+            set { this[52] = value; }
         }
 
         public byte[] GetIdentify()

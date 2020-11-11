@@ -56,7 +56,7 @@ namespace HTOL.Common
             return procList;
         }
 
-        public event EventHandler<Tuple<TcaAddr, TcaChannel, ChipAddr, Dictionary<UInt16, UInt32>>> RecvRegsHanlder;
+        public event EventHandler<ToFReply> RecvRegsHanlder;
         public event EventHandler<float> RecvTempHandler;
 
         private Communication()
@@ -78,7 +78,6 @@ namespace HTOL.Common
         {
             if (null != client)
             {
-                this.TransEn(false);
                 client.Close();
             }
 
@@ -258,11 +257,10 @@ namespace HTOL.Common
             if (null == client)
                 return 0;
 
-            Msg msg = new TempRequest(2)
+            Msg msg = new TempRequest(1)
             {
-                TempNum = 2,
+                TempNum = 1,
                 TMP108Gain = Times.Thousand,
-                VcselGain = Times.Thousand,
             };
 
             return client.SendMsg(msg);
@@ -307,7 +305,7 @@ namespace HTOL.Common
             return client.SendMsg(msg);
         }
 
-        [MsgType(0x122)]
+        [MsgType(0x02)]
         public void CmdProcTofReply(Packet pkt)
         {
             if (!(pkt.Msg is ToFReply msg))
@@ -321,7 +319,7 @@ namespace HTOL.Common
                     break;
 
                 case TofType.R_reg:
-                    RecvRegsHanlder?.Invoke(this, new Tuple<TcaAddr, TcaChannel, ChipAddr, Dictionary<ushort, uint>>(msg.TcaAddr,msg.TcaChannel,msg.ChipAddr,msg.GetRegValue()));
+                    RecvRegsHanlder?.Invoke(this,msg);
                     break;
 
                 default:
@@ -329,7 +327,7 @@ namespace HTOL.Common
             }
         }
 
-        [MsgType(0x124)]
+        [MsgType(0x04)]
         public void CmdProcTempReply(Packet pkt)
         {
             if (!(pkt.Msg is TempReply msg))
