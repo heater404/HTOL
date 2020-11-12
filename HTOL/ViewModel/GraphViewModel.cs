@@ -40,7 +40,7 @@ namespace HTOL.ViewModel
         {
             Communication.Instacne.RecvTempHandler += RecvTempHandler;
             t6332A = new IT6332A();
-            t6942A = new IT6942A();
+            //t6942A = new IT6942A();
 
             var mapper = Mappers.Xy<GraphModel>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
@@ -75,8 +75,10 @@ namespace HTOL.ViewModel
         public void StopMonitorInstrument()
         {
             isMonitorInstrument = false;
-            t6332A.Close();
-            t6942A.Close();
+            if (t6332A != null)
+                t6332A.Close();
+            if (t6942A != null)
+                t6942A.Close();
         }
 
         /// <summary>
@@ -91,11 +93,11 @@ namespace HTOL.ViewModel
             if (!t6332A.Open())
                 return;
 
-            if (!t6942A.Open())
-                return;
+            //if (!t6942A.Open())
+            //    return;
 
             CsvHelper csvHelper = new CsvHelper($@"D:\HTOL\{time:yyyyMMddHHmmss}\InstrumentData.csv");
-            csvHelper.WirteLine(new string[] { "Time(MMdd:HH:mm:ss)", "CH1_Voltage(V)", "CH2_Voltage(V)", "CH1_Current(A)", "CH2_Current(A)", "Voltage(V)", "Current(A)" });
+            csvHelper.WirteLine(new string[] { "Time(MMdd:HH:mm:ss)", "CH1_Voltage(V)", "CH2_Voltage(V)", "CH3_Voltage(V)", "CH1_Current(A)", "CH2_Current(A)", "CH3_Current(A)" });
 
             isMonitorInstrument = true;
             while (isMonitorInstrument)
@@ -103,29 +105,27 @@ namespace HTOL.ViewModel
                 var now = DateTime.Now;
 
                 double[] voltages = t6332A.QueryVoltage();
-                double voltage = t6942A.QueryVoltage();
                 Voltages.Add(new GraphModel
                 {
                     DateTime = now,
-                    Value = voltage
+                    Value = voltages[0]
                 });
 
                 double[] currents = t6332A.QueryCurrent();
-                double current = t6942A.QueryCurrent();
                 Currents.Add(new GraphModel
                 {
                     DateTime = now,
-                    Value = current
+                    Value = currents[0]
                 });
 
                 csvHelper.WirteLine(new string[]
                 { now.ToString("MMdd:HH:mm:ss"),
                     voltages[0].ToString("0.000"),
                     voltages[1].ToString("0.000"),
+                    voltages[2].ToString("0.000"),
                     currents[0].ToString("0.000"),
                     currents[1].ToString("0.000"),
-                    voltage.ToString("0.000"),
-                    current.ToString("0.000"),
+                    currents[2].ToString("0.000"),
                 });
 
                 SetAxisLimits(now);
